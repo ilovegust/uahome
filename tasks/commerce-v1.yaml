@@ -1,0 +1,61 @@
+schema_version: 1
+task_id: COMMERCE-V1
+goal: "1688 사입에서 쿠팡 로켓그로스 입고·등록·리뷰까지의 반자동 로컬 운영"
+repository:
+  url: https://github.com/ilovegust/uahome
+  branch: main
+  base_commit: 2d501fb48e1b38da2847e37818620e9f1fc1c3e6
+owner: orchestrator
+status: done
+parallel_tasks:
+  - task_id: DOMAIN
+    owner: commerce_domain
+    allowed_files: [uahome/domain.py, tests/test_domain.py]
+    depends_on: []
+    status: done
+    deliverables: [마진계산, 목표가격, 수동상품평가, 발주서와등록초안, 실제리뷰답변초안]
+  - task_id: STORAGE
+    owner: commerce_storage
+    allowed_files: [uahome/storage.py, tests/test_storage.py]
+    depends_on: [DOMAIN]
+    status: done
+    deliverables: [SQLite영구저장, revision검사, 승인과수동완료, 로켓그로스입고추적, 백업복원]
+  - task_id: UI
+    owner: commerce_frontend
+    allowed_files: [uahome/static/index.html, uahome/static/app.js, uahome/static/styles.css]
+    depends_on: []
+    status: done
+    deliverables: [6개운영화면, 1688견적배분폼, 승인함, CSV와JSON내보내기]
+  - task_id: HTTP_TESTS
+    owner: commerce_http_tests
+    allowed_files: [tests/test_http.py]
+    depends_on: [DOMAIN, STORAGE]
+    status: done
+  - task_id: SOURCE_RESEARCH
+    owner: rocket_growth_research
+    allowed_files: [docs/coupang-1688.md]
+    depends_on: []
+    status: done
+integration:
+  owner: orchestrator
+  deliverables: [HTTP서버, 수입원가배분, Windows실행파일, 사용안내, CI설정, 최종검증]
+verification:
+  commands:
+    - python -m unittest discover -s tests -v
+    - node --check uahome/static/app.js
+  results:
+    - "도메인·수입원가·저장소·HTTP 테스트 48개 통과"
+    - "JavaScript 문법 검사 통과"
+  not_performed:
+    - "브라우저 도구 부재로 실제 화면·클릭 검증 미실시"
+    - "외부 API 미발급/미연결로 실제 주문·게시·답변 검증 미실시"
+account_readiness:
+  sourcing: 1688
+  sales: 쿠팡로켓그로스
+  seller_registration: complete
+  open_api: not_issued
+remaining:
+  - "Open API 발급 후 서버 비밀값과 전용 상품등록 스키마를 사용한 쿠팡 연동"
+  - "1688 공식 API 계정 권한 및 주문 연동 지원 범위 확인"
+  - "상품평 리뷰 API 지원 범위 확인"
+  - "로그인과 서버 배포 운영"

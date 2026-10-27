@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f35">
+  <title>우아홈 · 1688에서 로켓그로스까지</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">본문으로 이동</a>
+  <aside class="sidebar" aria-label="주 메뉴">
+    <a class="brand" href="#products"><span class="brand-mark">우</span><span>우아홈<small>COMMERCE WORKSPACE</small></span></a>
+    <p class="nav-caption">운영 워크스페이스</p>
+    <nav id="navigation"></nav>
+    <div class="sidebar-note"><span class="status-dot"></span> 사람과 함께하는 자동화<p>계산과 초안은 빠르게,<br>최종 결정은 신중하게.</p></div>
+  </aside>
+  <main id="workspace" tabindex="-1">
+    <header class="topbar"><span class="breadcrumb">우아홈 <span>/</span> 1688 → 쿠팡 로켓그로스</span><div><span class="local-badge">로컬 데이터 저장</span><button id="refresh" class="icon-button" aria-label="데이터 새로고침">↻</button></div></header>
+    <div id="connection-alert" class="alert hidden" role="alert"></div>
+    <div class="page-heading"><div><p class="eyebrow">UAHOME OPERATIONS</p><h1 id="page-title">상품 후보</h1><p id="page-subtitle">좋은 상품을 발견하고, 숫자로 확인하세요.</p></div><button class="button primary" id="new-product">＋ 상품 추가</button></div>
+    <section id="metrics" class="metrics" aria-label="운영 현황"></section>
+    <section id="view" aria-live="polite"></section>
+    <footer>우아홈 · 외부 판매처/사입처 연결 전입니다. 주문·게시·답변 전송은 해당 서비스에서 직접 완료하세요.</footer>
+  </main>
+  <dialog id="product-dialog" aria-labelledby="product-dialog-title"><form id="product-form"><div class="dialog-heading"><div><p class="eyebrow">PRODUCT DETAILS</p><h2 id="product-dialog-title">상품 추가</h2></div><button type="button" class="icon-button" id="close-product" aria-label="닫기">×</button></div><div id="product-fields"></div><p id="product-error" class="error" role="alert"></p><div class="dialog-actions"><button type="button" class="button" id="cancel-product">취소</button><button class="button primary" type="submit">상품 저장</button></div></form></dialog>
+  <div id="toast" class="toast hidden" role="status"></div>
+</body>
+</html>
