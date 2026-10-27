@@ -1,0 +1,30 @@
+# 작업별로 복사하고 실제 목표·경로·기준 커밋을 채운 뒤 실행한다.
+schema_version: 1
+task_id: "TASK-001"
+goal: "사용자 목표에 맞게 작성"
+role: "implementation_worker"
+owner: "unassigned"
+repository:
+  url: "https://github.com/ilovegust/uahome"
+  branch: "main"
+  base_commit: null
+status: "blocked"
+priority: "unassigned"
+evidence: []
+allowed_files: []
+forbidden_files: []
+shared_file_owner: null
+depends_on: []
+inputs: []
+deliverables: []
+acceptance_criteria: []
+verification:
+  commands: []
+  success_conditions: []
+  results: []
+blockers:
+  - "기준 커밋, 담당 경로, 산출물, 완료 기준과 검증 미정"
+report:
+  changed_files: []
+  summary: ""
+  unresolved: []
